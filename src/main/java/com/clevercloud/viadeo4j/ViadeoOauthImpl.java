@@ -6,6 +6,7 @@ package com.clevercloud.viadeo4j;
 
 import com.clevercloud.viadeo4j.auth.RequestToken;
 import com.clevercloud.viadeo4j.json.CompanyConverter;
+import com.clevercloud.viadeo4j.json.DateConverter;
 import com.clevercloud.viadeo4j.json.JobAdConverter;
 import com.clevercloud.viadeo4j.json.LocationConverter;
 import com.clevercloud.viadeo4j.json.UserConverter;
@@ -21,6 +22,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Date;
 import oauth.signpost.OAuthConsumer;
 import oauth.signpost.OAuthProvider;
 import oauth.signpost.basic.DefaultOAuthConsumer;
@@ -66,6 +68,7 @@ public class ViadeoOauthImpl implements Viadeo {
         }
     }
 
+    @Override
     public AccessToken getAccessToken(String verifier) throws ViadeoException {
         try {
             this.provider.retrieveAccessToken(this.consumer, verifier);
@@ -76,6 +79,7 @@ public class ViadeoOauthImpl implements Viadeo {
         }
     }
 
+    @Override
     public void setAccessToken(AccessToken token) {
         this.accessToken = token;
         if (this.accessToken != null) {
@@ -83,18 +87,22 @@ public class ViadeoOauthImpl implements Viadeo {
         }
     }
 
+    @Override
     public RequestToken getRequestToken() {
         return this.requestToken;
     }
 
+    @Override
     public String getApplicationKey() {
         return consumer.getConsumerKey();
     }
 
+    @Override
     public String getApplicationSecret() {
         return consumer.getConsumerSecret();
     }
 
+    @Override
     public User getUser() throws ViadeoException {
         return this.getUser("me");
     }
@@ -105,6 +113,7 @@ public class ViadeoOauthImpl implements Viadeo {
         }
     }
 
+    @Override
     public User getUser(String id) throws ViadeoException {
         checkAccessToken();
         try {
@@ -122,13 +131,16 @@ public class ViadeoOauthImpl implements Viadeo {
                 sb.append(buf).append('\n');
             }
 
-            Gson gson = new GsonBuilder().registerTypeAdapter(User.class, new UserConverter()).registerTypeAdapter(Location.class, new LocationConverter()).create();
+            Gson gson = new GsonBuilder().registerTypeAdapter(User.class, new UserConverter()).
+               registerTypeAdapter(Location.class, new LocationConverter()).
+               registerTypeAdapter(Date.class, new DateConverter()).create();
             return gson.fromJson(sb.toString(), User.class);
         } catch (Exception ex) {
             throw new ViadeoException(ex);
         }
     }
 
+    @Override
     public UserMetadata getUserMetadata(String id) throws ViadeoException {
         checkAccessToken();
         try {
@@ -153,6 +165,7 @@ public class ViadeoOauthImpl implements Viadeo {
         }
     }
 
+    @Override
     public JobAd getJobAd(String id) throws ViadeoException {
         checkAccessToken();
         try {
@@ -170,13 +183,15 @@ public class ViadeoOauthImpl implements Viadeo {
                 sb.append(buf).append('\n');
             }
 
-            Gson gson = new GsonBuilder().registerTypeAdapter(JobAd.class, new JobAdConverter()).create();
+            Gson gson = new GsonBuilder().registerTypeAdapter(JobAd.class, new JobAdConverter()).
+               registerTypeAdapter(Date.class, new DateConverter()).create();
             return gson.fromJson(sb.toString(), JobAd.class);
         } catch (Exception ex) {
             throw new ViadeoException(ex);
         }
     }
 
+    @Override
     public Company getCompany(String id) throws ViadeoException {
         checkAccessToken();
         try {
@@ -194,7 +209,9 @@ public class ViadeoOauthImpl implements Viadeo {
                 sb.append(buf).append('\n');
             }
 
-            Gson gson = new GsonBuilder().registerTypeAdapter(Company.class, new CompanyConverter()).registerTypeAdapter(Location.class, new LocationConverter()).create();
+            Gson gson = new GsonBuilder().registerTypeAdapter(Company.class, new CompanyConverter()).
+               registerTypeAdapter(Location.class, new LocationConverter()).
+               registerTypeAdapter(Date.class, new DateConverter()).create();
             return gson.fromJson(sb.toString(), Company.class);
         } catch (Exception ex) {
             throw new ViadeoException(ex);

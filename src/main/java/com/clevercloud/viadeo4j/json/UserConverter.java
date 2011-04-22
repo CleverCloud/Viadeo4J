@@ -23,6 +23,8 @@ import java.util.Map.Entry;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.print.attribute.standard.DateTimeAtCompleted;
+import org.joda.time.format.DateTimeFormatter;
+import org.joda.time.format.DateTimeFormatterBuilder;
 
 /**
  *
@@ -39,28 +41,12 @@ public class UserConverter implements JsonDeserializer<User> {
             while (it.hasNext()) {
                 Entry<String, JsonElement> entry = it.next();
                 try {
-                    Logger.getLogger(this.getClass().getName()).log(Level.INFO, "parsing the field {0} => ''{1}''", new Object[]{entry.getKey(), entry.getValue() == null ? "" : entry.getValue().toString()});
-
                     Field f = c.getDeclaredField(entry.getKey());
                     Boolean b = f.isAccessible();
                     f.setAccessible(true);
-                    if (Date.class.equals(f.getType())) {
-                        DateFormat df = new SimpleDateFormat("yyyy-dd-mm hh:mm:ssZ");
-
-                        StringBuffer sb = new StringBuffer(entry.getValue().getAsString());
-                        sb.replace(sb.lastIndexOf(":"), sb.lastIndexOf(":")+1, "").replace(sb.indexOf("T"), sb.indexOf("T") +1, " ");
-
-                        System.out.println(sb.toString());
-
-                        f.set(user, df.parse(sb.toString()));
-                    } else {
-                        f.set(user, jdc.deserialize(entry.getValue(), f.getType()));
-                    }
+                    f.set(user, jdc.deserialize(entry.getValue(), f.getType()));
 
                     f.setAccessible(b);
-                    Logger.getLogger(this.getClass().getName()).log(Level.INFO, "end parsing");
-                } catch (ParseException ex) {
-                    Logger.getLogger(UserConverter.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (IllegalArgumentException ex) {
                     Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
                 } catch (IllegalAccessException ex) {

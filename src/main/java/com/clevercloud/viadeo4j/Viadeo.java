@@ -4,6 +4,12 @@
  */
 package com.clevercloud.viadeo4j;
 
+import com.clevercloud.viadeo4j.auth.RequestToken;
+import com.clevercloud.viadeo4j.models.Company;
+import com.clevercloud.viadeo4j.models.JobAd;
+import com.clevercloud.viadeo4j.models.User;
+import com.clevercloud.viadeo4j.models.UserMetadata;
+
 /**
  *
  * @author Julien Durillon
@@ -25,4 +31,25 @@ public interface Viadeo {
     static final String API_METADATA_PATH = "/metadata";
 
     public String getAuthorizationUrl() throws ViadeoException;
+
+    public AccessToken getAccessToken(String verifier) throws ViadeoException;
+
+    public String getApplicationKey();
+
+    public String getApplicationSecret();
+
+    public Company getCompany(String id) throws ViadeoException;
+
+    public JobAd getJobAd(String id) throws ViadeoException;
+
+    public RequestToken getRequestToken();
+
+    User getUser() throws ViadeoException;
+
+    User getUser(String id) throws ViadeoException;
+
+    UserMetadata getUserMetadata(String id) throws ViadeoException;
+
+    void setAccessToken(AccessToken token);
+
 }
