@@ -30,7 +30,7 @@ public class Company {
 
     protected URL link;
 
-    protected Date updated_time; // yyyy-dd-mmThh:mmTZD
+    protected Date updated_time; // yyyy-dd-mmThh:mmTZD <-- WTF?
 
     protected Map<String, String> unknownField;
 
@@ -40,6 +40,14 @@ public class Company {
 
     public void setUnknownField(Map<String, String> unknownField) {
         this.unknownField = unknownField;
+    }
+    
+    /**
+     * Get a field on name <strong>field</strong> from unknownField.
+     * @param field the wanted field.
+     */
+    public String get(String field) {
+        return this.unknownField.get(field);
     }
 
     public String getId() {

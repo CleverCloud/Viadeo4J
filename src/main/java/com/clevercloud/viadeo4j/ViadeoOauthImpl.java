@@ -32,7 +32,7 @@ import oauth.signpost.basic.DefaultOAuthProvider;
  *
  * @author Julien Durillon
  */
-public class ViadeoOauthImpl implements Viadeo {
+class ViadeoOauthImpl implements Viadeo {
 
     private OAuthConsumer consumer;
 
@@ -46,11 +46,24 @@ public class ViadeoOauthImpl implements Viadeo {
 
     private RequestToken requestToken;
 
+    /**
+     * Create a viadeo object that uses oauth to authenticate the user.
+     * @param applicationApiKey
+     * @param applicationApiSecret
+     * @param callbackUrl 
+     */
     public ViadeoOauthImpl(String applicationApiKey, String applicationApiSecret, String callbackUrl) {
         this.consumer = new DefaultOAuthConsumer(applicationApiKey, applicationApiSecret);
         this.callBackUrl = callbackUrl;
     }
 
+    /**
+     * Create a viadeo object that with existing access token.
+     * @param applicationApiKey
+     * @param applicationApiSecret
+     * @param callbackUrl
+     * @param token 
+     */
     public ViadeoOauthImpl(String applicationApiKey, String applicationApiSecret, String callbackUrl, AccessToken token) {
         this(applicationApiKey, applicationApiSecret, callbackUrl);
         this.accessToken = token;
@@ -85,6 +98,11 @@ public class ViadeoOauthImpl implements Viadeo {
         if (this.accessToken != null) {
             this.consumer.setTokenWithSecret(token.getToken(), token.getTokenSecret());
         }
+    }
+    
+    @Override
+    public void setAccessToken(String token, String secret) {
+        this.setAccessToken(new AccessToken(token, secret));
     }
 
     @Override

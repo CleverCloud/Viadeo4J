@@ -35,6 +35,14 @@ public class JobAd {
     public void setUnknownField(Map<String, String> unknownField) {
         this.unknownField = unknownField;
     }
+    
+    /**
+     * Get a field on name <strong>field</strong> from unknownField.
+     * @param field the wanted field.
+     */
+    public String get(String field) {
+        return this.unknownField.get(field);
+    }
 
     public String getId() {
         return id;
