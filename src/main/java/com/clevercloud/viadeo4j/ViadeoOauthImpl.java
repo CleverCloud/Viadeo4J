@@ -117,24 +117,12 @@ public class ViadeoOauthImpl implements Viadeo {
     public User getUser(String id) throws ViadeoException {
         checkAccessToken();
         try {
-            URL url = new URL(API_BASE_URL + id);
-            HttpURLConnection huc = (HttpURLConnection) url.openConnection();
-            this.consumer.sign(huc);
-
-            huc.connect();
-
-            BufferedReader br = new BufferedReader(new InputStreamReader(huc.getInputStream()));
-
-            String buf = null;
-            StringBuilder sb = new StringBuilder();
-            while ((buf = br.readLine()) != null) {
-                sb.append(buf).append('\n');
-            }
+            String user = makeRequest(id);
 
             Gson gson = new GsonBuilder().registerTypeAdapter(User.class, new UserConverter()).
                registerTypeAdapter(Location.class, new LocationConverter()).
                registerTypeAdapter(Date.class, new DateConverter()).create();
-            return gson.fromJson(sb.toString(), User.class);
+            return gson.fromJson(user, User.class);
         } catch (Exception ex) {
             throw new ViadeoException(ex);
         }
@@ -144,22 +132,10 @@ public class ViadeoOauthImpl implements Viadeo {
     public UserMetadata getUserMetadata(String id) throws ViadeoException {
         checkAccessToken();
         try {
-            URL url = new URL(API_BASE_URL + id + API_METADATA_PATH);
-            HttpURLConnection huc = (HttpURLConnection) url.openConnection();
-            this.consumer.sign(huc);
-
-            huc.connect();
-
-            BufferedReader br = new BufferedReader(new InputStreamReader(huc.getInputStream()));
-
-            String buf = null;
-            StringBuilder sb = new StringBuilder();
-            while ((buf = br.readLine()) != null) {
-                sb.append(buf).append('\n');
-            }
+            String userMetadata = makeRequest(id);
 
             Gson gson = new GsonBuilder().registerTypeAdapter(UserMetadata.class, new UserMetadataConverter()).create();
-            return gson.fromJson(sb.toString(), UserMetadata.class);
+            return gson.fromJson(userMetadata, UserMetadata.class);
         } catch (Exception ex) {
             throw new ViadeoException(ex);
         }
@@ -169,23 +145,11 @@ public class ViadeoOauthImpl implements Viadeo {
     public JobAd getJobAd(String id) throws ViadeoException {
         checkAccessToken();
         try {
-            URL url = new URL(API_BASE_URL + id);
-            HttpURLConnection huc = (HttpURLConnection) url.openConnection();
-            this.consumer.sign(huc);
-
-            huc.connect();
-
-            BufferedReader br = new BufferedReader(new InputStreamReader(huc.getInputStream()));
-
-            String buf = null;
-            StringBuilder sb = new StringBuilder();
-            while ((buf = br.readLine()) != null) {
-                sb.append(buf).append('\n');
-            }
+            String jobAd = makeRequest(id);
 
             Gson gson = new GsonBuilder().registerTypeAdapter(JobAd.class, new JobAdConverter()).
                registerTypeAdapter(Date.class, new DateConverter()).create();
-            return gson.fromJson(sb.toString(), JobAd.class);
+            return gson.fromJson(jobAd, JobAd.class);
         } catch (Exception ex) {
             throw new ViadeoException(ex);
         }
@@ -195,24 +159,35 @@ public class ViadeoOauthImpl implements Viadeo {
     public Company getCompany(String id) throws ViadeoException {
         checkAccessToken();
         try {
-            URL url = new URL(API_BASE_URL + id);
+            String company = makeRequest(id);
+
+            Gson gson = new GsonBuilder().registerTypeAdapter(Company.class, new CompanyConverter()).
+               registerTypeAdapter(Location.class, new LocationConverter()).
+               registerTypeAdapter(Date.class, new DateConverter()).create();
+            return gson.fromJson(company, Company.class);
+        } catch (Exception ex) {
+            throw new ViadeoException(ex);
+        }
+    }
+
+    private String makeRequest(String path) throws ViadeoException {
+        try {
+
+            if(path.startsWith("/")) {
+                path = path.substring(1);
+            }
+
+            URL url = new URL(API_BASE_URL + path);
             HttpURLConnection huc = (HttpURLConnection) url.openConnection();
             this.consumer.sign(huc);
-
             huc.connect();
-
             BufferedReader br = new BufferedReader(new InputStreamReader(huc.getInputStream()));
-
             String buf = null;
             StringBuilder sb = new StringBuilder();
             while ((buf = br.readLine()) != null) {
                 sb.append(buf).append('\n');
             }
-
-            Gson gson = new GsonBuilder().registerTypeAdapter(Company.class, new CompanyConverter()).
-               registerTypeAdapter(Location.class, new LocationConverter()).
-               registerTypeAdapter(Date.class, new DateConverter()).create();
-            return gson.fromJson(sb.toString(), Company.class);
+            return sb.toString();
         } catch (Exception ex) {
             throw new ViadeoException(ex);
         }

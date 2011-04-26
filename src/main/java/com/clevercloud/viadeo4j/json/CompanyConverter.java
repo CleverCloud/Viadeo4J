@@ -5,7 +5,6 @@
 package com.clevercloud.viadeo4j.json;
 
 import com.clevercloud.viadeo4j.models.Company;
-import com.clevercloud.viadeo4j.models.User;
 import com.google.gson.Gson;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
