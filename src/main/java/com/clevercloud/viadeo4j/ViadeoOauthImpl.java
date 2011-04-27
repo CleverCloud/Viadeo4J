@@ -75,7 +75,10 @@ class ViadeoOauthImpl implements Viadeo {
     @Override
     public String getAuthorizationUrl() throws ViadeoException {
         try {
-            return provider.retrieveRequestToken(consumer, this.callBackUrl);
+            String url = provider.retrieveRequestToken(consumer, this.callBackUrl);
+            this.requestToken = new RequestToken(consumer.getToken(), consumer.getTokenSecret());
+            
+            return url;
         } catch (Exception ex) {
             throw new ViadeoException(ex);
         }
@@ -108,6 +111,17 @@ class ViadeoOauthImpl implements Viadeo {
     @Override
     public RequestToken getRequestToken() {
         return this.requestToken;
+    }
+    
+    @Override
+    public void setRequestToken(String token, String secret) {
+        this.setRequestToken(new RequestToken(token, secret));
+    }
+    
+    
+    @Override
+    public void setRequestToken(RequestToken token) {
+        this.requestToken = token;
     }
 
     @Override

@@ -34,7 +34,6 @@ public class LocationConverter implements JsonDeserializer<Location> {
         while (it.hasNext()) {
             Entry<String, JsonElement> entry = it.next();
             try {
-                Logger.getLogger(this.getClass().getName()).log(Level.INFO, "parsing the field {0} => ''{1}''", new Object[]{entry.getKey(), entry.getValue() == null ? "" : entry.getValue().toString()});
                 Field f = c.getDeclaredField(entry.getKey());
                 Boolean b = f.isAccessible();
                 f.setAccessible(true);

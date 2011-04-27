@@ -71,6 +71,10 @@ public interface Viadeo {
     public RequestToken getRequestToken();
 
     
+    public void setRequestToken(String token, String secret);
+    
+    public void setRequestToken(RequestToken token);
+    
     /**
      * Get the authenticated user.
      * @return The user.

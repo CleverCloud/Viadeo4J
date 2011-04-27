@@ -8,6 +8,7 @@ import com.clevercloud.viadeo4j.models.User;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import java.util.Date;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import junit.framework.Test;
 import junit.framework.TestCase;
@@ -51,7 +52,6 @@ public class AppTest
         Gson gson = new GsonBuilder().registerTypeAdapter(User.class, new UserConverter()).
            registerTypeAdapter(Location.class, new LocationConverter()).
            registerTypeAdapter(Date.class, new DateConverter()).create();
-        System.out.println(gson.fromJson(userJson, User.class));
         assertTrue(true);
     }
 
@@ -59,10 +59,7 @@ public class AppTest
         String locationJson = "{\"city\":\"nantes\",\"zipcode\":\"44\",\"country\":\"France\",\"area\":\"Pays de la Loire\",\"timezone\":\"(GMT+01:00) Bruxelles, Copenhague, Madrid, Paris\","
            + "\"latitude\":\"\",\"longitude\":\"\"}";
 
-        Logger.getAnonymousLogger().info("++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-
         Gson gson = new GsonBuilder().registerTypeAdapter(Location.class, new LocationConverter()).create();
-        System.out.println(gson.fromJson(locationJson, Location.class));
         assertTrue(true);
 
     }

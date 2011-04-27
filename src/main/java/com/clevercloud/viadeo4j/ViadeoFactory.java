@@ -19,7 +19,7 @@ public class ViadeoFactory {
         return getAuthenticatedViadeo(key,secret,callbackUrl,at);
     }
 
-    private Viadeo getAuthenticatedViadeo(String key, String secret, String callbackUrl, AccessToken at) {
+    public Viadeo getAuthenticatedViadeo(String key, String secret, String callbackUrl, AccessToken at) {
         return new ViadeoOauthImpl(key, secret, callbackUrl, at);
     }
     
