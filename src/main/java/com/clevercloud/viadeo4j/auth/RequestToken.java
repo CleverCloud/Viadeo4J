@@ -4,11 +4,13 @@
  */
 package com.clevercloud.viadeo4j.auth;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Julien Durillon
  */
-public class RequestToken {
+public class RequestToken implements Serializable {
 
     private String token;
 
@@ -27,5 +29,8 @@ public class RequestToken {
         return tokenSecret;
     }
 
-    
+    @Override
+    public String toString() {
+        return "RequestToken{" + "token=" + token + ", tokenSecret=" + tokenSecret + '}';
+    }
 }

@@ -3,13 +3,17 @@
  * and open the template in the editor.
  */
 
-package com.clevercloud.viadeo4j;
+package com.clevercloud.viadeo4j.auth;
+
+
+import java.io.Serializable;
+
 
 /**
  *
  * @author Julien Durillon
  */
-public class AccessToken {
+public class AccessToken implements Serializable {
 
     private String token;
     private String tokenSecret;
@@ -25,5 +29,10 @@ public class AccessToken {
 
     public String getTokenSecret() {
         return tokenSecret;
+    }
+
+    @Override
+    public String toString() {
+        return "AccessToken{" + "token=" + token + ", tokenSecret=" + tokenSecret + '}';
     }
 }

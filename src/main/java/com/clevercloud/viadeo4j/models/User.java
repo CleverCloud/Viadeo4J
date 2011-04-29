@@ -15,7 +15,7 @@ import java.util.Map;
  *
  * @author Julien Durillon
  */
-public class User {
+public class User implements Serializable {
 
     public static final String TYPE = "USER";
 
@@ -112,7 +112,7 @@ public class User {
     public String getFirst_name() {
         return first_name;
     }
-
+    
     public void setFirst_name(String first_name) {
         this.first_name = first_name;
     }
@@ -187,6 +187,14 @@ public class User {
 
     public void setPresentation(String presentation) {
         this.presentation = presentation;
+    }
+
+    public String getHeadline() {
+        return headline;
+    }
+
+    public void setHeadline(String headline) {
+        this.headline = headline;
     }
 
     @Override

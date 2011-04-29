@@ -1,9 +1,6 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.clevercloud.viadeo4j;
 
+import com.clevercloud.viadeo4j.auth.AccessToken;
 import com.clevercloud.viadeo4j.auth.RequestToken;
 import com.clevercloud.viadeo4j.json.CompanyConverter;
 import com.clevercloud.viadeo4j.json.DateConverter;
@@ -122,6 +119,7 @@ class ViadeoOauthImpl implements Viadeo {
     @Override
     public void setRequestToken(RequestToken token) {
         this.requestToken = token;
+        this.consumer.setTokenWithSecret(token.getToken(), token.getTokenSecret());
     }
 
     @Override

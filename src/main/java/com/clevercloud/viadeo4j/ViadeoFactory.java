@@ -1,8 +1,6 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.clevercloud.viadeo4j;
+
+import com.clevercloud.viadeo4j.auth.AccessToken;
 
 /**
  *

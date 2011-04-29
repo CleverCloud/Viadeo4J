@@ -4,17 +4,19 @@
  */
 package com.clevercloud.viadeo4j;
 
+import com.clevercloud.viadeo4j.auth.AccessToken;
 import com.clevercloud.viadeo4j.auth.RequestToken;
 import com.clevercloud.viadeo4j.models.Company;
 import com.clevercloud.viadeo4j.models.JobAd;
 import com.clevercloud.viadeo4j.models.User;
 import com.clevercloud.viadeo4j.models.UserMetadata;
+import java.io.Serializable;
 
 /**
  *
  * @author Julien Durillon
  */
-public interface Viadeo {
+public interface Viadeo extends Serializable {
 
     static final String USER_AGENT = System.getProperty("viadeo4j.http.user.agent", "viadeo4j:1.0 20110420");
     static final String CALLBACK_URL = "oob";
