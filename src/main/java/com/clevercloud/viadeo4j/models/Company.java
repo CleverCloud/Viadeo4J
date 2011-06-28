@@ -4,6 +4,7 @@
  */
 package com.clevercloud.viadeo4j.models;
 
+import java.io.Serializable;
 import java.net.URL;
 import java.util.Date;
 import java.util.Map;
@@ -12,7 +13,7 @@ import java.util.Map;
  *
  * @author Julien Durillon
  */
-public class Company {
+public class Company implements Serializable {
 
     public static final String TYPE = "COMPANY";
 

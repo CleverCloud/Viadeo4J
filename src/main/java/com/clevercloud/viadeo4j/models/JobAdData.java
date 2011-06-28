@@ -4,11 +4,13 @@
  */
 package com.clevercloud.viadeo4j.models;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Julien Durillon
  */
-public class JobAdData {
+public class JobAdData implements Serializable {
 
     private String title;
 

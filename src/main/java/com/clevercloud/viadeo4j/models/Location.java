@@ -1,10 +1,12 @@
 package com.clevercloud.viadeo4j.models;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Julien Durillon
  */
-public class Location {
+public class Location implements Serializable {
     private String city;
 
     private String zipcode;

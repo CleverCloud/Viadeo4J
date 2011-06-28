@@ -5,11 +5,13 @@
 
 package com.clevercloud.viadeo4j.models;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Julien Durillon
  */
-public class Connection {
+public class Connection implements Serializable {
     private String name;
     private String connection;
 

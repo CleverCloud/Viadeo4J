@@ -5,11 +5,13 @@
 
 package com.clevercloud.viadeo4j.models;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Julien Durillon
  */
-public class JobAdLocation {
+public class JobAdLocation implements Serializable {
     private String city;
     private String country;
     private String area;

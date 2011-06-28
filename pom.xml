@@ -9,6 +9,12 @@
     <name>viadeo4j</name>
     <url>http://maven.apache.org</url>
     <build>
+      <extensions>
+         <extension>
+            <groupId>org.apache.maven.wagon</groupId>
+            <artifactId>wagon-ssh</artifactId>
+         </extension>
+      </extensions> 
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -52,4 +58,20 @@
             <type>jar</type>
         </dependency>
     </dependencies>
+   <distributionManagement>
+      <repository>
+         <uniqueVersion>false</uniqueVersion>
+         <id>private-cc</id> 
+         <name>Repo Clever cloud privé</name>
+         <url>sftp://maven.stand-innovation.org/maven</url>
+         <layout>default</layout>
+      </repository>
+      <snapshotRepository>
+         <uniqueVersion>true</uniqueVersion>
+         <id>private-cc</id>
+         <name>Repo pour les snapshots</name>
+         <url>sftp://maven.stand-innovation.org/snapshots</url>
+         <layout>default</layout>
+      </snapshotRepository>
+   </distributionManagement>
 </project>

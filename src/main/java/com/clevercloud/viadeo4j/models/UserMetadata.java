@@ -4,6 +4,7 @@
  */
 package com.clevercloud.viadeo4j.models;
 
+import java.io.Serializable;
 import java.net.URL;
 import java.util.Date;
 import java.util.List;
@@ -13,7 +14,7 @@ import java.util.Map;
  *
  * @author Julien Durillon
  */
-public class UserMetadata {
+public class UserMetadata implements Serializable {
 
     public static final String TYPE = "USER METADATA";
 
