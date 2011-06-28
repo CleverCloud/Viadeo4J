@@ -1,0 +1,22 @@
+This is the first iteration of the java API for the Viadeo REST API.
+
+For now, it's a read-only API, we didn't need more. Feel free to improve it.
+
+To use it with maven, just add the repository :
+
+<repositories>
+  <repository>
+    <id>StandInnovation</id>
+    <name>Stand Innovation maven repository</name>
+    <url>http://maven.stand-innovation.org/maven</url>
+</repositories>
+
+<dependencies>
+  ...
+  <dependency>
+    <groupId>com.clevercloud</groupId>
+    <artifactId>viadeo4j</artifactId>
+    <version>1.0</version>
+  </dependency>
+  ...
+<dependencies>
