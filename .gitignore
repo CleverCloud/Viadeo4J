@@ -1,1 +1,6 @@
 target
+# For IDEA
+viadeo4j.iml
+viadeo4j.ipr
+viadeo4j.iws
+

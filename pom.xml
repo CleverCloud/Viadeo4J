@@ -5,7 +5,7 @@
     <groupId>com.clevercloud</groupId>
     <artifactId>viadeo4j</artifactId>
     <packaging>jar</packaging>
-    <version>1.0</version>
+    <version>1.1</version>
     <name>viadeo4j</name>
     <url>http://maven.apache.org</url>
     <build>
@@ -40,12 +40,6 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>oauth.signpost</groupId>
-            <artifactId>signpost-core</artifactId>
-            <version>1.2.1.1</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
             <version>1.7.1</version>
@@ -56,6 +50,11 @@
             <artifactId>joda-time</artifactId>
             <version>1.6.2</version>
             <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>org.scribe</groupId>
+            <artifactId>scribe</artifactId>
+            <version>1.2.1</version>
         </dependency>
     </dependencies>
    <distributionManagement>
