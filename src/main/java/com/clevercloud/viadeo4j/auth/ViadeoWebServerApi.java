@@ -1,4 +1,4 @@
-package com.clevercloud.viadeo4j;
+package com.clevercloud.viadeo4j.auth;
 
 import org.scribe.builder.api.DefaultApi20;
 import org.scribe.model.OAuthConfig;

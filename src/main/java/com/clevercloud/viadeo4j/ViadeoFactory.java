@@ -1,6 +1,6 @@
 package com.clevercloud.viadeo4j;
 
-import com.clevercloud.viadeo4j.auth.AccessToken;
+import org.scribe.model.Token;
 
 /**
  *
@@ -13,11 +13,11 @@ public class ViadeoFactory {
     
     
     public Viadeo getAuthenticatedViadeo(String key, String secret, String callbackUrl, String accessToken, String accessSecret) {
-        AccessToken at = new AccessToken(accessToken, accessSecret);
+        Token at = new Token(accessToken, accessSecret);
         return getAuthenticatedViadeo(key,secret,callbackUrl,at);
     }
 
-    public Viadeo getAuthenticatedViadeo(String key, String secret, String callbackUrl, AccessToken at) {
+    public Viadeo getAuthenticatedViadeo(String key, String secret, String callbackUrl, Token at) {
         return new ViadeoOauthImpl(key, secret, callbackUrl, at);
     }
     

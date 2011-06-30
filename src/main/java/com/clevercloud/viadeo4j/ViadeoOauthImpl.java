@@ -1,21 +1,14 @@
 package com.clevercloud.viadeo4j;
 
-import com.clevercloud.viadeo4j.auth.AccessToken;
-import com.clevercloud.viadeo4j.auth.RequestToken;
+import com.clevercloud.viadeo4j.auth.ViadeoWebServerApi;
 import com.clevercloud.viadeo4j.json.*;
 import com.clevercloud.viadeo4j.models.*;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import oauth.signpost.OAuthProvider;
-import oauth.signpost.basic.DefaultOAuthProvider;
 import org.scribe.builder.ServiceBuilder;
 import org.scribe.model.*;
 import org.scribe.oauth.OAuthService;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.Date;
 
 /**
@@ -26,8 +19,6 @@ class ViadeoOauthImpl implements Viadeo {
    private OAuthService service;
 
    private Token accessToken;
-
-   private RequestToken requestToken;
 
    /**
     * Create a viadeo object that uses oauth to authenticate the user.

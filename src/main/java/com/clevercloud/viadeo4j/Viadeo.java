@@ -4,7 +4,6 @@
  */
 package com.clevercloud.viadeo4j;
 
-import com.clevercloud.viadeo4j.auth.AccessToken;
 import com.clevercloud.viadeo4j.models.Company;
 import com.clevercloud.viadeo4j.models.JobAd;
 import com.clevercloud.viadeo4j.models.User;
@@ -19,13 +18,7 @@ import java.io.Serializable;
  */
 public interface Viadeo extends Serializable {
 
-   static final String USER_AGENT = System.getProperty("viadeo4j.http.user.agent", "viadeo4j:1.0 20110420");
-   static final String CALLBACK_URL = "oob";
-   static final String REQUEST_TOKEN_URL = "http://www.viadeo.com/oauth-provider/request_token";
-   static final String USER_AUTHORIZATION_URL = "http://www.viadeo.com/oauth-provider/authorize";
-   static final String ACCESS_TOKEN_URL = "http://www.viadeo.com/oauth-provider/access_token";
    static final String API_BASE_URL = "http://api.viadeo.com/";
-   static final String API_METADATA_PATH = "/metadata";
 
    /**
     * Get request_token then the authorization_url and return it.
@@ -48,7 +41,7 @@ public interface Viadeo extends Serializable {
     * Retrieve OAuth acces_token.
     *
     * @param verifier the verifier response from authorization.
-    * @return the AccessToken
+    * @return the Token
     */
    public Token getAccessToken(Verifier verifier);
 
