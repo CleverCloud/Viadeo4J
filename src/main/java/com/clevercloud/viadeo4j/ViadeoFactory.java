@@ -11,7 +11,6 @@ public class ViadeoFactory {
         return new ViadeoOauthImpl(key, secret, callbackUrl);
     }
     
-    
     public Viadeo getAuthenticatedViadeo(String key, String secret, String callbackUrl, String accessToken, String accessSecret) {
         Token at = new Token(accessToken, accessSecret);
         return getAuthenticatedViadeo(key,secret,callbackUrl,at);

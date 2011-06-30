@@ -8,7 +8,7 @@ To use it with maven, just add the repository :
   <repository>
     <id>StandInnovation</id>
     <name>Stand Innovation maven repository</name>
-    <url>http://maven.stand-innovation.org/maven</url>
+    <url>http://maven.stand-innovation.org/maven/ </url>
 </repositories>
 
 <dependencies>
@@ -16,7 +16,7 @@ To use it with maven, just add the repository :
   <dependency>
     <groupId>com.clevercloud</groupId>
     <artifactId>viadeo4j</artifactId>
-    <version>1.0</version>
+    <version>1.1</version>
   </dependency>
   ...
 <dependencies>
